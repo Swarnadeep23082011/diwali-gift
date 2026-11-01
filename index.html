@@ -1,0 +1,1274 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#090d2a">
+<title>A Diwali Surprise for Dad</title>
+
+<style>
+:root {
+  --gold: #ffd76a;
+  --pink: #ff5c9b;
+  --cyan: #55e8ff;
+  --violet: #9b7bff;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  overflow: hidden;
+  color: white;
+  font-family: Arial, Helvetica, sans-serif;
+  background: #090d2a;
+}
+
+button {
+  font: inherit;
+}
+
+#app {
+  position: relative;
+  min-height: 100svh;
+  overflow: hidden;
+  background:
+    radial-gradient(ellipse at 15% 12%, #ff5c9b35, transparent 32%),
+    radial-gradient(ellipse at 85% 20%, #55e8ff30, transparent 30%),
+    radial-gradient(ellipse at 50% 100%, #9b7bff35, transparent 42%),
+    linear-gradient(145deg, #11143d, #080b25 60%, #1b103d);
+}
+
+#app::before {
+  content: "";
+  position: absolute;
+  inset: -30%;
+  pointer-events: none;
+  background: conic-gradient(
+    from 0deg,
+    transparent,
+    #ffd76a12,
+    transparent,
+    #ff5c9b10,
+    transparent
+  );
+  animation: spin 55s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.screen {
+  position: absolute;
+  inset: 0;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 65px 18px 35px;
+  overflow-y: auto;
+  z-index: 1;
+}
+
+.screen.active {
+  display: flex;
+  animation: screenIn .8s ease both;
+}
+
+@keyframes screenIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px) scale(.98);
+    filter: blur(8px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+    filter: blur(0);
+  }
+}
+
+.content {
+  width: min(100%, 760px);
+  position: relative;
+  z-index: 2;
+  margin: auto;
+}
+
+.eyebrow {
+  color: #ffe5a3;
+  font-size: .72rem;
+  font-weight: 800;
+  letter-spacing: .3em;
+  text-transform: uppercase;
+  margin-bottom: 16px;
+  text-shadow: 0 0 18px #ffbd55;
+}
+
+h1 {
+  font-size: clamp(2.8rem, 10vw, 6.5rem);
+  line-height: .95;
+  letter-spacing: -.06em;
+  margin: 0 0 20px;
+}
+
+h2 {
+  font-size: clamp(2rem, 7vw, 4.2rem);
+  line-height: 1;
+  letter-spacing: -.04em;
+  margin: 0 0 18px;
+}
+
+.goldText {
+  background: linear-gradient(
+    100deg,
+    #fff7c8,
+    #ffd76a,
+    white,
+    #ffb93e,
+    #fff0ad
+  );
+  background-size: 220% auto;
+  color: transparent;
+  background-clip: text;
+  -webkit-background-clip: text;
+  animation: goldFlow 5s linear infinite;
+}
+
+@keyframes goldFlow {
+  to { background-position: 220% center; }
+}
+
+.sub {
+  color: #d8dcff;
+  font-size: clamp(.95rem, 2.6vw, 1.15rem);
+  line-height: 1.7;
+  max-width: 560px;
+  margin: 0 auto 28px;
+}
+
+.glassCard {
+  padding: clamp(24px, 5vw, 45px);
+  border: 1px solid #ffe8af38;
+  border-radius: 30px;
+  background: linear-gradient(
+    145deg,
+    #ffffff1c,
+    #ffffff08
+  );
+  box-shadow:
+    0 25px 90px #0005,
+    inset 0 1px #ffffff25;
+  backdrop-filter: blur(18px);
+}
+
+.cta {
+  position: relative;
+  border: 0;
+  border-radius: 999px;
+  padding: 16px 30px;
+  min-width: 185px;
+  color: #281331;
+  font-weight: 900;
+  letter-spacing: .04em;
+  background: linear-gradient(
+    110deg,
+    #fff0a6,
+    #ffc24d,
+    #ff8e61,
+    #ffb8d2
+  );
+  box-shadow:
+    0 0 22px #ffbe4f66,
+    0 12px 35px #ff707333;
+  cursor: pointer;
+  transition: .25s;
+  overflow: hidden;
+}
+
+.cta:hover {
+  transform: translateY(-4px) scale(1.04);
+  box-shadow: 0 0 35px #ffbe4f99;
+}
+
+.cta:active {
+  transform: scale(.97);
+}
+
+.cta span {
+  position: relative;
+  z-index: 1;
+}
+
+.cta::after {
+  content: "";
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 25%;
+  height: 200%;
+  transform: rotate(25deg);
+  background: #ffffff88;
+  filter: blur(6px);
+  animation: shine 3.5s infinite;
+}
+
+@keyframes shine {
+  70%, 100% { left: 140%; }
+}
+
+.smallNote {
+  color: #aeb5e8;
+  font-size: .75rem;
+  margin-top: 18px;
+}
+
+/* FESTIVE LANTERNS */
+
+.lanterns {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 120px;
+  display: flex;
+  justify-content: space-around;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.lantern {
+  width: 34px;
+  height: 65px;
+  position: relative;
+  transform-origin: top;
+  animation: sway 4s ease-in-out infinite;
+}
+
+.lantern:nth-child(even) {
+  animation-delay: -1.7s;
+}
+
+.lantern::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 50%;
+  height: 22px;
+  border-left: 1px solid #eacb75;
+}
+
+.lantern::after {
+  content: "";
+  position: absolute;
+  top: 20px;
+  left: 3px;
+  width: 28px;
+  height: 38px;
+  border-radius: 45% 45% 50% 50%;
+  background: linear-gradient(
+    90deg,
+    #ff6d78,
+    #ffd66e,
+    #ff7b9f
+  );
+  box-shadow: 0 0 15px #ffb84d, 0 0 35px #ff7b7b;
+}
+
+@keyframes sway {
+  0%, 100% { transform: rotate(-7deg); }
+  50% { transform: rotate(7deg); }
+}
+
+/* DIYAS */
+
+.diyaRow {
+  display: flex;
+  justify-content: center;
+  gap: 24px;
+  margin: 30px 0 12px;
+}
+
+.diya {
+  width: 42px;
+  height: 22px;
+  border-radius: 0 0 24px 24px;
+  background: linear-gradient(#ffdf83, #d96a30);
+  position: relative;
+  box-shadow: 0 7px 20px #ff9c3d66;
+}
+
+.diya::before {
+  content: "";
+  position: absolute;
+  left: 17px;
+  top: -19px;
+  width: 10px;
+  height: 23px;
+  border-radius: 100% 0 100% 0;
+  transform: rotate(45deg);
+  background: radial-gradient(
+    ellipse at 30% 70%,
+    white 0 10%,
+    #fff49c 25%,
+    #ff9a36 70%,
+    transparent 72%
+  );
+  filter: drop-shadow(0 0 9px #ffc65e);
+  animation: flame 1.2s ease-in-out infinite alternate;
+}
+
+@keyframes flame {
+  to {
+    transform: rotate(55deg) scale(.8);
+    filter: drop-shadow(0 0 16px #ffb43c);
+  }
+}
+
+/* SPARKLES */
+
+.sparkle {
+  position: absolute;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: #fff7bd;
+  box-shadow: 0 0 8px 3px #ffc85b;
+  animation: twinkle var(--duration, 2s) ease-in-out infinite;
+  pointer-events: none;
+  opacity: 0;
+}
+
+@keyframes twinkle {
+  0%, 100% {
+    opacity: 0;
+    transform: scale(.3) rotate(0);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.5) rotate(90deg);
+  }
+}
+
+/* PROGRESS INDICATORS */
+
+.progress {
+  position: absolute;
+  top: 19px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 7px;
+  z-index: 5;
+}
+
+.progress i {
+  width: 7px;
+  height: 7px;
+  border-radius: 20px;
+  background: #ffffff35;
+}
+
+.progress i.on {
+  width: 24px;
+  background: linear-gradient(90deg, #ffe58e, #ff8f80);
+  box-shadow: 0 0 12px #ffcc66;
+}
+
+.backBtn {
+  position: absolute;
+  left: 16px;
+  top: 14px;
+  border: 1px solid #ffffff28;
+  background: #ffffff0b;
+  color: #e5e8ff;
+  padding: 8px 13px;
+  border-radius: 30px;
+  font-size: .78rem;
+  cursor: pointer;
+  z-index: 5;
+}
+
+/* GIFT BOX */
+
+.giftStage {
+  height: clamp(260px, 43vh, 380px);
+  display: grid;
+  place-items: center;
+  position: relative;
+  margin: 5px auto 20px;
+  perspective: 900px;
+}
+
+.giftGlow {
+  position: absolute;
+  width: 250px;
+  height: 150px;
+  border-radius: 50%;
+  background: #ffb83e;
+  filter: blur(65px);
+  opacity: .3;
+  animation: glowPulse 2.7s ease-in-out infinite;
+}
+
+@keyframes glowPulse {
+  50% {
+    opacity: .7;
+    transform: scale(1.3);
+  }
+}
+
+.gift {
+  position: relative;
+  width: 190px;
+  height: 165px;
+  transform-style: preserve-3d;
+  animation: giftFloat 3.8s ease-in-out infinite;
+  filter: drop-shadow(0 24px 28px #0007);
+  cursor: pointer;
+  transition: filter .8s;
+}
+
+@keyframes giftFloat {
+  0%, 100% { transform: translateY(0) rotateY(-7deg); }
+  50% { transform: translateY(-13px) rotateY(7deg); }
+}
+
+.giftBody {
+  position: absolute;
+  left: 8px;
+  right: 8px;
+  bottom: 0;
+  height: 118px;
+  border-radius: 8px 8px 15px 15px;
+  background: linear-gradient(
+    110deg,
+    #4c4c60,
+    #a5a5b6 35%,
+    #424257 70%,
+    #17182e
+  );
+  border: 2px solid #c5c5d0;
+  box-shadow: inset 0 0 20px #ffffff33;
+}
+
+.giftBody::before {
+  content: "";
+  position: absolute;
+  left: 70px;
+  top: 0;
+  bottom: 0;
+  width: 42px;
+  background: linear-gradient(
+    90deg,
+    #6d4a17,
+    #ffd76a 35%,
+    #fff1b4 52%,
+    #9b5c13
+  );
+  box-shadow: 0 0 18px #ffca57;
+}
+
+.giftLid {
+  position: absolute;
+  z-index: 3;
+  left: 0;
+  top: 35px;
+  width: 190px;
+  height: 42px;
+  border-radius: 8px;
+  background: linear-gradient(
+    110deg,
+    #5d5c73,
+    #d0d0dc 38%,
+    #69687f 75%,
+    #33334c
+  );
+  border: 2px solid #e0d5b5;
+  box-shadow: 0 7px 14px #0007;
+  transform-origin: 15% 100%;
+  transition: transform 1.1s cubic-bezier(.2,.8,.2,1);
+}
+
+.giftLid::after {
+  content: "";
+  position: absolute;
+  left: 73px;
+  top: 0;
+  width: 42px;
+  height: 100%;
+  background: linear-gradient(90deg, #9b5c13, #ffe18a, #fff4c2, #a96917);
+}
+
+.bow {
+  position: absolute;
+  z-index: 4;
+  top: 0;
+  left: 75px;
+  width: 42px;
+  height: 40px;
+}
+
+.bow::before,
+.bow::after {
+  content: "";
+  position: absolute;
+  width: 37px;
+  height: 27px;
+  border: 9px solid #ffcf62;
+  border-radius: 80% 80% 10% 80%;
+  filter: drop-shadow(0 0 8px #ffbf42);
+}
+
+.bow::before {
+  left: -28px;
+  transform: rotate(25deg);
+}
+
+.bow::after {
+  left: 28px;
+  transform: scaleX(-1) rotate(25deg);
+}
+
+.gift.monochrome .giftBody,
+.gift.monochrome .giftLid {
+  filter: grayscale(1);
+  background: linear-gradient(110deg, #333, #999, #444);
+  border-color: #aaa;
+}
+
+.gift.monochrome .giftBody::before,
+.gift.monochrome .giftLid::after {
+  background: linear-gradient(90deg, #777, #ddd, #888);
+  box-shadow: none;
+}
+
+.gift.monochrome .bow::before,
+.gift.monochrome .bow::after {
+  border-color: #bbb;
+  filter: none;
+}
+
+.gift.unlocked {
+  filter: drop-shadow(0 0 24px #ffd76a) drop-shadow(0 20px 25px #0008);
+}
+
+.gift.open .giftLid {
+  transform: translate(-12px, -65px) rotate(-24deg);
+}
+
+.countdown {
+  font-size: clamp(4rem, 17vw, 8rem);
+  font-weight: 1000;
+  line-height: 1;
+  color: #fff1ad;
+  text-shadow: 0 0 20px #ffc75c, 0 0 70px #ff9d35;
+  animation: countPop .75s ease both;
+}
+
+@keyframes countPop {
+  from { opacity: 0; transform: scale(1.7); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+.flash {
+  position: fixed;
+  inset: 0;
+  z-index: 8;
+  pointer-events: none;
+  background: radial-gradient(
+    circle,
+    #fff9cf,
+    #ffd76a88 22%,
+    transparent 70%
+  );
+  opacity: 0;
+}
+
+.flash.go {
+  animation: flash .9s ease-out;
+}
+
+@keyframes flash {
+  20% { opacity: 1; }
+  100% { opacity: 0; }
+}
+
+/* FINAL PAGE */
+
+.finalScreen {
+  background:
+    radial-gradient(ellipse at 50% 10%, #ffc34c33, transparent 35%),
+    radial-gradient(ellipse at 15% 85%, #00c2ff25, transparent 35%),
+    linear-gradient(145deg, #070b25, #101b42 55%, #090b27);
+}
+
+/* YOUR BACKGROUND IMAGE GOES HERE.
+   The image URL is intentionally EMPTY.
+   Add your image URL in the CONFIG section below. */
+
+.finalScreen.withBackground {
+  background-image:
+    linear-gradient(#080b25bb, #080b25cc),
+    var(--final-background);
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.fitnessMark {
+  width: 76px;
+  height: 76px;
+  border-radius: 24px;
+  margin: 0 auto 22px;
+  display: grid;
+  place-items: center;
+  background: linear-gradient(145deg, #2de2ff, #766cff 55%, #ff6fb1);
+  box-shadow: 0 0 35px #57caff66;
+}
+
+.fitnessMark svg {
+  width: 48px;
+  height: 48px;
+}
+
+.brand {
+  font-weight: 1000;
+  letter-spacing: .11em;
+  font-size: clamp(1.35rem, 5vw, 2.2rem);
+  margin: 12px 0 8px;
+}
+
+.brand span {
+  color: #70e9ff;
+}
+
+.url {
+  display: inline-block;
+  max-width: 100%;
+  overflow-wrap: anywhere;
+  color: #b9eaff;
+  text-decoration: none;
+  border-bottom: 1px dashed #7bdcff;
+  padding: 5px 3px;
+  margin: 8px 0 22px;
+}
+
+.websitePreview {
+  display: none;
+  width: min(100%, 420px);
+  max-height: 190px;
+  object-fit: cover;
+  border-radius: 18px;
+  margin: 15px auto 20px;
+  border: 1px solid #ffffff55;
+  box-shadow: 0 0 35px #57caff33;
+}
+
+.qrFrame {
+  display: none;
+  width: 132px;
+  height: 132px;
+  margin: 8px auto 18px;
+  padding: 9px;
+  border-radius: 17px;
+  background: white;
+  box-shadow: 0 0 30px #69dfff44;
+}
+
+.qrFrame img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.footerNote {
+  color: #aab4df;
+  font-size: .72rem;
+  margin-top: 22px;
+}
+
+/* CONFETTI */
+
+.confetti {
+  position: fixed;
+  z-index: 9;
+  top: -20px;
+  width: 8px;
+  height: 13px;
+  pointer-events: none;
+  animation: confettiFall var(--fall, 3s) linear forwards;
+}
+
+@keyframes confettiFall {
+  to {
+    transform: translate(var(--drift, 40px), 110vh) rotate(800deg);
+    opacity: .1;
+  }
+}
+
+@media (max-width: 480px) {
+  .screen { padding: 70px 16px 28px; }
+  .gift { transform: scale(.9); }
+  .glassCard { border-radius: 24px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+  }
+}
+</style>
+</head>
+
+<body>
+<div id="app">
+
+  <div class="lanterns" aria-hidden="true">
+    <div class="lantern"></div>
+    <div class="lantern"></div>
+    <div class="lantern"></div>
+    <div class="lantern"></div>
+    <div class="lantern"></div>
+    <div class="lantern"></div>
+    <div class="lantern"></div>
+  </div>
+
+  <div id="sparkles"></div>
+  <div class="flash" id="flash"></div>
+
+  <div class="progress" id="progress">
+    <i class="on"></i><i></i><i></i><i></i>
+  </div>
+
+  <!-- PAGE 1: DIWALI WELCOME -->
+
+  <section class="screen active" id="page1">
+    <div class="content">
+      <div class="pill">✦ A LITTLE FESTIVE SURPRISE ✦</div>
+
+      <div style="height:25px"></div>
+
+      <div class="eyebrow">The festival of lights</div>
+
+      <h1 class="goldText">
+        Happy<br>Diwali!
+      </h1>
+
+      <p class="sub">
+        A little sparkle, a little magic,
+        and something special waiting just for you.
+      </p>
+
+      <div class="diyaRow">
+        <div class="diya"></div>
+        <div class="diya"></div>
+        <div class="diya"></div>
+      </div>
+
+      <div style="height:15px"></div>
+
+      <button class="cta" onclick="goToPage(2)">
+        <span>LET THE MAGIC BEGIN →</span>
+      </button>
+
+      <div class="smallNote">
+        Made with love, just for you.
+      </div>
+    </div>
+  </section>
+
+  <!-- PAGE 2: THE MESSAGE -->
+
+  <section class="screen" id="page2">
+    <button class="backBtn" onclick="goToPage(1)">← Back</button>
+
+    <div class="content">
+      <div class="glassCard">
+
+        <div class="eyebrow">Something special awaits</div>
+
+        <h2 class="goldText">
+          I made<br>something for you.
+        </h2>
+
+        <p class="sub">
+          This Diwali, I wanted to give you something
+          a little different. Something made specially
+          for you.
+        </p>
+
+        <div class="diyaRow">
+          <div class="diya"></div>
+          <div class="diya"></div>
+          <div class="diya"></div>
+        </div>
+
+        <button class="cta" onclick="goToPage(3)">
+          <span>DISCOVER THE SURPRISE →</span>
+        </button>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- PAGE 3: THE GIFT REVEAL -->
+
+  <section class="screen" id="page3">
+    <button class="backBtn" onclick="goToPage(2)">← Back</button>
+
+    <div class="content">
+
+      <div class="eyebrow">A special gift is waiting</div>
+
+      <h2 class="goldText" style="font-size:clamp(2rem,7vw,3.6rem)">
+        Ready to unlock?
+      </h2>
+
+      <p class="sub" id="giftMessage">
+        Watch closely. Something magical is about to happen.
+      </p>
+
+      <div class="giftStage">
+
+        <div class="giftGlow"></div>
+
+        <div class="gift monochrome" id="gift" onclick="openGift()">
+          <div class="bow"></div>
+          <div class="giftLid"></div>
+          <div class="giftBody"></div>
+        </div>
+
+        <div id="countdown"
+          style="position:absolute;display:none">
+        </div>
+
+      </div>
+
+      <button class="cta" id="unlockButton" onclick="startCountdown()">
+        <span>UNLOCK YOUR GIFT ✦</span>
+      </button>
+
+      <button class="cta" id="openButton"
+        style="display:none" onclick="openGift()">
+        <span>OPEN YOUR GIFT 🎁</span>
+      </button>
+
+      <div class="smallNote" id="giftHint">
+        A little countdown. A big surprise.
+      </div>
+
+    </div>
+  </section>
+
+  <!-- PAGE 4: FINAL EVERSTRONG REVEAL -->
+
+  <section class="screen finalScreen" id="page4">
+    <div class="content">
+
+      <div class="glassCard">
+
+        <div class="fitnessMark">
+          <svg viewBox="0 0 100 100" fill="none"
+            xmlns="http://www.w3.org/2000/svg">
+            <path d="M18 42V58M29 32V68M71 32V68M82 42V58"
+              stroke="white" stroke-width="9" stroke-linecap="round"/>
+            <path d="M29 50H71"
+              stroke="white" stroke-width="10" stroke-linecap="round"/>
+            <path d="M42 20L50 12L58 20"
+              stroke="white" stroke-width="5" stroke-linecap="round"/>
+            <path d="M42 80L50 88L58 80"
+              stroke="white" stroke-width="5" stroke-linecap="round"/>
+          </svg>
+        </div>
+
+        <div class="eyebrow">A gift created with love</div>
+
+        <h2 class="goldText">
+          Happy Diwali,<br>Dad!
+        </h2>
+
+        <p class="sub" style="margin-bottom:12px">
+          Here's something special for you.
+        </p>
+
+        <div class="brand">
+          EVERSTRONG <span>FITNESS</span>
+        </div>
+
+        <!-- WEBSITE PREVIEW IMAGE:
+             Add your website screenshot/image URL
+             in websiteImageUrl inside the CONFIG section. -->
+
+        <img id="websitePreview"
+          class="websitePreview"
+          alt="Everstrong Fitness website preview">
+
+        <!-- WEBSITE LINK:
+             Change websiteUrl inside the CONFIG section. -->
+
+        <a class="url" id="websiteLink"
+          href="#" target="_blank" rel="noopener">
+          Your website link will appear here
+        </a>
+
+        <br>
+
+        <button class="cta" onclick="visitWebsite()">
+          <span>VISIT WEBSITE ↗</span>
+        </button>
+
+        <!-- QR CODE:
+             Add your QR image URL in qrImageUrl
+             inside the CONFIG section. -->
+
+        <div class="qrFrame" id="qrFrame">
+          <img id="qrImage" alt="Website QR code">
+        </div>
+
+        <div class="footerNote">
+          With love, this Diwali and always. ✦
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<script>
+
+/* =====================================================
+   PERSONALISE YOUR WEBSITE HERE
+   Only replace the values inside the quotation marks.
+   ===================================================== */
+
+const CONFIG = {
+
+  // 1. YOUR FINAL PAGE BACKGROUND IMAGE URL
+  // Keep empty for now. Add your image URL later.
+  backgroundImageUrl: "",
+
+  // 2. YOUR EVERSTRONG FITNESS WEBSITE URL
+  // Replace this with your actual published website link.
+  websiteUrl: "",
+
+  // 3. YOUR WEBSITE PREVIEW IMAGE URL
+  // Add a screenshot/image of your website later.
+  websiteImageUrl: "",
+
+  // 4. YOUR QR CODE IMAGE URL
+  // Add your QR code image URL later.
+  qrImageUrl: ""
+
+};
+
+
+/* =====================================================
+   PAGE NAVIGATION
+   ===================================================== */
+
+let currentPage = 1;
+
+function goToPage(pageNumber) {
+
+  document.querySelectorAll(".screen").forEach(screen => {
+    screen.classList.remove("active");
+  });
+
+  document.getElementById("page" + pageNumber)
+    .classList.add("active");
+
+  document.querySelectorAll(".progress i").forEach((dot, index) => {
+    dot.classList.toggle("on", index === pageNumber - 1);
+  });
+
+  currentPage = pageNumber;
+
+  if (pageNumber === 4) {
+    celebrate();
+  }
+
+}
+
+
+/* =====================================================
+   COUNTDOWN
+   ===================================================== */
+
+let countdownStarted = false;
+
+function startCountdown() {
+
+  if (countdownStarted) return;
+
+  countdownStarted = true;
+
+  const button = document.getElementById("unlockButton");
+  const countdown = document.getElementById("countdown");
+  const message = document.getElementById("giftMessage");
+  const gift = document.getElementById("gift");
+
+  button.style.display = "none";
+  countdown.style.display = "block";
+  countdown.style.position = "absolute";
+
+  let number = 3;
+
+  function showNumber() {
+
+    countdown.innerHTML = `<div class="countdown">${number}</div>`;
+
+    if (number > 0) {
+
+      number--;
+
+      setTimeout(showNumber, 1000);
+
+    } else {
+
+      countdown.style.display = "none";
+
+      gift.classList.remove("monochrome");
+      gift.classList.add("unlocked");
+
+      message.textContent =
+        "Your surprise is ready! Tap the gift box to open it.";
+
+      document.getElementById("openButton").style.display =
+        "inline-block";
+
+      document.getElementById("giftHint").textContent =
+        "The magic is yours to discover.";
+
+      document.getElementById("flash").classList.remove("go");
+      void document.getElementById("flash").offsetWidth;
+      document.getElementById("flash").classList.add("go");
+
+      createConfetti();
+
+    }
+
+  }
+
+  showNumber();
+
+}
+
+
+/* =====================================================
+   OPEN GIFT
+   ===================================================== */
+
+let giftOpened = false;
+
+function openGift() {
+
+  if (!countdownStarted || giftOpened) return;
+
+  giftOpened = true;
+
+  const gift = document.getElementById("gift");
+
+  gift.classList.add("open");
+
+  document.getElementById("giftMessage").textContent =
+    "A surprise made especially for you!";
+
+  document.getElementById("openButton").style.display = "none";
+
+  createConfetti();
+
+  setTimeout(() => {
+    goToPage(4);
+  }, 1300);
+
+}
+
+
+/* =====================================================
+   CONFETTI ANIMATION
+   ===================================================== */
+
+function createConfetti() {
+
+  const colors = [
+    "#ffd76a",
+    "#ff5c9b",
+    "#55e8ff",
+    "#9b7bff",
+    "#ffffff",
+    "#ff9d42"
+  ];
+
+  for (let i = 0; i < 85; i++) {
+
+    const piece = document.createElement("div");
+
+    piece.className = "confetti";
+
+    piece.style.left = Math.random() * 100 + "vw";
+    piece.style.background =
+      colors[Math.floor(Math.random() * colors.length)];
+
+    piece.style.setProperty(
+      "--fall",
+      (2 + Math.random() * 3) + "s"
+    );
+
+    piece.style.setProperty(
+      "--drift",
+      (Math.random() * 180 - 90) + "px"
+    );
+
+    piece.style.animationDelay =
+      Math.random() * .8 + "s";
+
+    document.body.appendChild(piece);
+
+    setTimeout(() => piece.remove(), 6000);
+
+  }
+
+}
+
+
+/* =====================================================
+   FINAL PAGE IMAGE AND WEBSITE SETTINGS
+   ===================================================== */
+
+function setupFinalPage() {
+
+  const finalPage = document.getElementById("page4");
+
+  // BACKGROUND IMAGE
+  if (CONFIG.backgroundImageUrl.trim() !== "") {
+
+    finalPage.style.setProperty(
+      "--final-background",
+      `url("${CONFIG.backgroundImageUrl}")`
+    );
+
+    finalPage.classList.add("withBackground");
+
+  }
+
+  // WEBSITE LINK
+  const link = document.getElementById("websiteLink");
+
+  if (CONFIG.websiteUrl.trim() !== "") {
+
+    link.href = CONFIG.websiteUrl;
+    link.textContent = CONFIG.websiteUrl;
+
+  } else {
+
+    link.textContent = "Website link will be added here";
+    link.removeAttribute("href");
+
+  }
+
+  // WEBSITE PREVIEW IMAGE
+  const preview = document.getElementById("websitePreview");
+
+  if (CONFIG.websiteImageUrl.trim() !== "") {
+
+    preview.src = CONFIG.websiteImageUrl;
+    preview.style.display = "block";
+
+  }
+
+  // QR CODE IMAGE
+  const qr = document.getElementById("qrImage");
+  const qrFrame = document.getElementById("qrFrame");
+
+  if (CONFIG.qrImageUrl.trim() !== "") {
+
+    qr.src = CONFIG.qrImageUrl;
+    qrFrame.style.display = "grid";
+
+  }
+
+}
+
+
+/* =====================================================
+   VISIT WEBSITE BUTTON
+   ===================================================== */
+
+function visitWebsite() {
+
+  if (CONFIG.websiteUrl.trim() === "") {
+
+    alert("The website link will be added here soon!");
+
+    return;
+
+  }
+
+  window.open(CONFIG.websiteUrl, "_blank", "noopener");
+
+}
+
+
+/* =====================================================
+   SPARKLE GENERATOR
+   ===================================================== */
+
+function createSparkles() {
+
+  const container = document.getElementById("sparkles");
+
+  for (let i = 0; i < 65; i++) {
+
+    const sparkle = document.createElement("div");
+
+    sparkle.className = "sparkle";
+
+    sparkle.style.left = Math.random() * 100 + "%";
+    sparkle.style.top = Math.random() * 100 + "%";
+
+    sparkle.style.setProperty(
+      "--duration",
+      (1.5 + Math.random() * 3) + "s"
+    );
+
+    sparkle.style.animationDelay =
+      Math.random() * 4 + "s";
+
+    container.appendChild(sparkle);
+
+  }
+
+}
+
+
+/* =====================================================
+   FINAL CELEBRATION
+   ===================================================== */
+
+function celebrate() {
+
+  createConfetti();
+
+}
+
+
+/* =====================================================
+   START WEBSITE
+   ===================================================== */
+
+setupFinalPage();
+createSparkles();
+
+</script>
+
+</body>
+</html>
